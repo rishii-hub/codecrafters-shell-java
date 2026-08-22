@@ -19,7 +19,7 @@ public class Main {
                     System.out.println(command + ": not found");
                 }
             } else {
-                System.out.println(command + ": command not found");
+                System.out.println(command + ": not found");
             }
 
         }
