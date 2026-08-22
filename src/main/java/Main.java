@@ -2,10 +2,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.print("$ ");
-            Scanner scanner = new Scanner(System.in);
             String command = scanner.nextLine();
             if (command.equals("exit")) {
                 break;
@@ -16,7 +15,7 @@ public class Main {
                         || command.substring(5).equals("type")) {
                     System.out.println(command.substring(5) + " is a shell builtin");
                 } else {
-                    System.out.println(command + ": not found");
+                    System.out.println(command.substring(5) + ": not found");
                 }
             } else {
                 System.out.println(command + ": not found");
