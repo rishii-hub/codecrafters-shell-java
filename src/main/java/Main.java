@@ -42,9 +42,12 @@ public class Main {
 
                         File file = new File(directory, cmd);
 
-                        if (file.exists() && file.isFile() && file.canExecute()) {
+                        if (file.exists() &&
+                                file.isFile() &&
+                                file.canExecute()) {
 
-                            System.out.println(cmd + " is " + file.getAbsolutePath());
+                            System.out.println(
+                                    cmd + " is " + file.getAbsolutePath());
 
                             found = true;
                             break;
@@ -58,8 +61,43 @@ public class Main {
 
             } else {
 
-                System.out.println(command + ": not found");
+                String[] arguments = command.split(" ");
 
+                String program = arguments[0];
+
+                String path = System.getenv("PATH");
+                String[] directories = path.split(File.pathSeparator);
+
+                File executable = null;
+
+                for (String directory : directories) {
+
+                    File file = new File(directory, program);
+
+                    if (file.exists() &&
+                            file.isFile() &&
+                            file.canExecute()) {
+
+                        executable = file;
+                        break;
+                    }
+                }
+
+                if (executable != null) {
+
+                    ProcessBuilder processBuilder = new ProcessBuilder(arguments);
+
+                    processBuilder.inheritIO();
+
+                    Process process = processBuilder.start();
+
+                    process.waitFor();
+
+                } else {
+
+                    System.out.println(command + ": not found");
+
+                }
             }
         }
 
