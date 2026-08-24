@@ -84,6 +84,7 @@ public class Main {
 
                 if (path.equals("~")) {
                     path = System.getenv("HOME");
+                    System.err.println("DEBUG HOME = " + path);
                 }
 
                 File directory = new File(path);
