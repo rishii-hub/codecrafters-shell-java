@@ -82,23 +82,21 @@ public class Main {
 
                 String path = command.substring(3).trim();
 
+                // Handle ~ first
                 if (path.equals("~")) {
                     path = System.getenv("HOME");
-                    System.err.println("DEBUG HOME = " + path);
                 }
 
                 File directory = new File(path);
 
+                // Relative path
                 if (!directory.isAbsolute()) {
                     directory = new File(currentDirectory, path);
                 }
 
                 if (directory.exists() && directory.isDirectory()) {
-
                     currentDirectory = directory.getCanonicalFile();
-
                 } else {
-
                     System.out.println(
                             "cd " + path + ": No such file or directory");
                 }
