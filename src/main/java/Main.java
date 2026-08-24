@@ -22,7 +22,7 @@ public class Main {
                 System.out.println(command.substring(5));
 
             } else if (command.equals("pwd")) {
-                System.out.println(System.getProperty("user.dir"));
+                System.out.println(currentDirectory.getCanonicalPath());
             } else if (command.startsWith("type ")) {
 
                 String cmd = command.substring(5);
@@ -78,7 +78,6 @@ public class Main {
                     currentDirectory = directory.getCanonicalFile();
 
                 } else {
-
                     System.out.println(
                             "cd " + path + ": No such file or directory");
                 }
