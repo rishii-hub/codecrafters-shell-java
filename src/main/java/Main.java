@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         Scanner scanner = new Scanner(System.in);
-
+        File currentDirectory = new File(System.getProperty("user.dir"));
         while (true) {
 
             System.out.print("$ ");
@@ -30,7 +30,8 @@ public class Main {
                 if (cmd.equals("echo") ||
                         cmd.equals("exit") ||
                         cmd.equals("type") ||
-                        cmd.equals("pwd")) {
+                        cmd.equals("pwd") ||
+                        cmd.equals("cd")) {
 
                     System.out.println(cmd + " is a shell builtin");
 
@@ -62,7 +63,28 @@ public class Main {
                     }
                 }
 
-            } else {
+            } else if (command.startsWith("cd ")) {
+
+                String path = command.substring(3);
+
+                File directory = new File(path);
+
+                if (!directory.isAbsolute()) {
+                    directory = new File(currentDirectory, path);
+                }
+
+                if (directory.isDirectory() && directory.exists()) {
+
+                    currentDirectory = directory.getCanonicalFile();
+
+                } else {
+
+                    System.out.println(
+                            "cd " + path + ": No such file or directory");
+                }
+            }
+
+            else {
 
                 String[] arguments = command.split(" ");
 
