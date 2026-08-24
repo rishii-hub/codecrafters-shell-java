@@ -77,9 +77,29 @@ public class Main {
 
                     currentDirectory = directory.getCanonicalFile();
 
+                }
+            } else if (command.startsWith("cd ")) {
+
+                String path = command.substring(3).trim();
+
+                if (path.equals("~")) {
+                    path = System.getenv("HOME");
+                }
+
+                File directory = new File(path);
+
+                if (!directory.isAbsolute()) {
+                    directory = new File(currentDirectory, path);
+                }
+
+                if (directory.exists() && directory.isDirectory()) {
+
+                    currentDirectory = directory.getCanonicalFile();
+
                 } else {
+
                     System.out.println(
-                            "cd: " + path + ": No such file or directory");
+                            "cd " + path + ": No such file or directory");
                 }
             }
 
