@@ -79,7 +79,7 @@ public class Main {
 
                 } else {
                     System.out.println(
-                            "cd " + path + ": No such file or directory");
+                            "cd: " + path + ": No such file or directory");
                 }
             }
 
