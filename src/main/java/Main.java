@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.io.File;
+import java.util.*;
 
 public class Main {
 
@@ -128,5 +128,30 @@ public class Main {
         } else {
             System.out.println(program + ": command not found");
         }
+    }
+
+    static String[] parseCommand(String command) {
+        List<String> arguments = new ArrayList<>();
+        StringBuilder current = new StringBuilder();
+        boolean isSingleQuote = false;
+
+        for (char c : command.toCharArray()) {
+            if (c == '\'') {
+                isSingleQuote = !isSingleQuote;
+            } else if (Character.isWhitespace(c) && !isSingleQuote) {
+                if (current.length() > 0) {
+
+                    arguments.add(current.toString());
+                    current.setLength(0);
+                }
+            } else {
+                current.append(c);
+            }
+        }
+        if (current.length() > 0) {
+            arguments.add(current.toString());
+        }
+
+        return arguments.toArray(new String[0]);
     }
 }
