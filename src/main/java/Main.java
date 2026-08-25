@@ -13,6 +13,8 @@ public class Main {
         while (true) {
 
             System.out.print("$ ");
+            System.out.flush();
+    
 
             if (!scanner.hasNextLine()) {
                 break;
@@ -34,7 +36,7 @@ public class Main {
                     if (i > 1) {
                         System.out.print(" ");
                     } else {
-                        System.out.println(arguments[i]);
+                        System.out.print(arguments[i]);
                     }
                 }
                 System.out.println();
