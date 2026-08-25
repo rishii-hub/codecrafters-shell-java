@@ -133,17 +133,18 @@ public class Main {
     static String[] parseCommand(String command) {
         List<String> arguments = new ArrayList<>();
         StringBuilder current = new StringBuilder();
-        boolean isSingleQuote = false;
+        boolean inSingleQuote = false;
 
         for (char c : command.toCharArray()) {
             if (c == '\'') {
-                isSingleQuote = !isSingleQuote;
-            } else if (Character.isWhitespace(c) && !isSingleQuote) {
-                if (current.length() > 0) {
+                inSingleQuote = !inSingleQuote;
+            } else if (Character.isWhitespace(c) && !inSingleQuote) {
 
+                if (current.length() > 0) {
                     arguments.add(current.toString());
                     current.setLength(0);
                 }
+
             } else {
                 current.append(c);
             }
