@@ -32,7 +32,7 @@ public class Main {
 
                 for (int i = 1; i < arguments.length; i++) {
                     if (i > 1) {
-                        System.out.println(" ");
+                        System.out.print(" ");
                     } else {
                         System.out.println(arguments[i]);
                     }
