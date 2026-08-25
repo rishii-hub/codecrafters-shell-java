@@ -28,8 +28,16 @@ public class Main {
                 break;
 
             } else if (command.equals("echo") || command.startsWith("echo ")) {
-                System.out.println(command.length() > 4 ? command.substring(5) : "");
+                String[] arguments = parseCommand(command);
 
+                for (int i = 1; i < arguments.length; i++) {
+                    if (i > 1) {
+                        System.out.println(" ");
+                    } else {
+                        System.out.println(arguments[i]);
+                    }
+                }
+                System.out.println();
             } else if (command.equals("pwd")) {
                 System.out.println(currentDirectory.getCanonicalPath());
 
