@@ -123,7 +123,7 @@ public class Main {
     }
 
     static void runExternal(String command) throws Exception {
-        String[] arguments = command.split(" ");
+        String[] arguments = parseCommand(command);
         String program = arguments[0];
 
         File executable = findExecutable(program);
