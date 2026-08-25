@@ -14,7 +14,6 @@ public class Main {
 
             System.out.print("$ ");
             System.out.flush();
-    
 
             if (!scanner.hasNextLine()) {
                 break;
@@ -35,9 +34,9 @@ public class Main {
                 for (int i = 1; i < arguments.length; i++) {
                     if (i > 1) {
                         System.out.print(" ");
-                    } else {
-                        System.out.print(arguments[i]);
                     }
+                    System.out.print(arguments[i]);
+
                 }
                 System.out.println();
             } else if (command.equals("pwd")) {
